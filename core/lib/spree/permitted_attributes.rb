@@ -92,7 +92,7 @@ module Spree
     @@store_attributes = [:name, :url, :seo_title, :meta_keywords,
                          :meta_description, :default_currency, :mail_from_address]
 
-    @@taxonomy_attributes = [:name]
+    @@taxonomy_attributes = [:name, :store_id]
 
     @@taxon_attributes = [
       :name, :parent_id, :position, :icon, :description, :permalink, :taxonomy_id,

@@ -43,13 +43,14 @@ module Spree
       private
 
       def taxonomies
-        @taxonomies = Spree::Taxonomy.accessible_by(current_ability, :read).order('name').includes(:root => :children).
-                      ransack(params[:q]).result.
-                      page(params[:page]).per(params[:per_page])
+        @taxonomies = Spree::Taxonomy.accessible_by(current_ability, :read).where(:store_id => params[:store_id]).
+          order('name').includes(:root => :children).ransack(params[:q]).result.page(params[:page]).
+          per(params[:per_page])
       end
 
       def taxonomy
-        @taxonomy ||= Spree::Taxonomy.accessible_by(current_ability, :read).find(params[:id])
+        @taxonomy ||= Spree::Taxonomy.accessible_by(current_ability, :read).where(:store_id => params[:store_id]).
+          find(params[:id])
       end
 
       def taxonomy_params
